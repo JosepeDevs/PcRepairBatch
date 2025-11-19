@@ -1,7 +1,7 @@
 package com.josepedevs.pcrepair.rowmapper;
 
-import com.josepedevs.pcrepair.domain.Person;
-import com.josepedevs.pcrepair.domain.PersonColumnsEnum;
+import com.josepedevs.pcrepair.domain.enums.PersonColumnsEnum;
+import com.josepedevs.pcrepair.domain.model.Person;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;

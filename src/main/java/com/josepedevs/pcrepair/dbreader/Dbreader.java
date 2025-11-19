@@ -1,9 +1,9 @@
 package com.josepedevs.pcrepair.dbreader;
 
-import com.josepedevs.pcrepair.domain.Person;
-import com.josepedevs.pcrepair.domain.PersonColumnsEnum;
+import com.josepedevs.pcrepair.domain.enums.PersonColumnsEnum;
+import com.josepedevs.pcrepair.domain.enums.PersonDatabase;
+import com.josepedevs.pcrepair.domain.model.Person;
 import com.josepedevs.pcrepair.rowmapper.PersonRowMapper;
-import com.josepedevs.pcrepair.util.FieldExtractor;
 import lombok.AllArgsConstructor;
 import org.springframework.batch.item.database.JdbcPagingItemReader;
 import org.springframework.batch.item.database.Order;
@@ -20,8 +20,6 @@ import java.util.stream.Stream;
 @Configuration
 public class Dbreader {
 
-    private final FieldExtractor fieldExtractor;
-
     @Bean
     public JdbcPagingItemReader<Person> personReader(DataSource dataSource) {
 
@@ -31,8 +29,8 @@ public class Dbreader {
                         .map(PersonColumnsEnum::getColumnName)
                         .collect(Collectors.joining(", "))
         );
-        provider.setFromClause("persons");
-        provider.setWhereClause("deleted = 0");
+        provider.setFromClause(PersonDatabase.getDatabaseName());
+        provider.setWhereClause(PersonColumnsEnum.DELETED.getColumnName() + "= 0");
         provider.setSortKeys(Map.of(
                 PersonColumnsEnum.ID_USER.getColumnName(), Order.ASCENDING
         ));

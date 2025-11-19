@@ -1,4 +1,4 @@
-package com.josepedevs.pcrepair.domain;
+package com.josepedevs.pcrepair.domain.model;
 
 import lombok.Builder;
 import lombok.Data;

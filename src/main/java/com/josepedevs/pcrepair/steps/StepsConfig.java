@@ -1,14 +1,11 @@
-package com.josepedevs.pcrepair.executionplan;
+package com.josepedevs.pcrepair.steps;
 
-import com.josepedevs.pcrepair.domain.Person;
-import com.josepedevs.pcrepair.listener.JobCompletionLoggingListener;
-import com.josepedevs.pcrepair.logtasklet.LogPropertiesTasklet;
-import com.josepedevs.pcrepair.propertyreader.PropertyReader;
+import com.josepedevs.pcrepair.domain.enums.JobAndStepValuesEnum;
+import com.josepedevs.pcrepair.domain.model.Person;
+import com.josepedevs.pcrepair.propertyreader.AppPropetiesReader;
 import lombok.AllArgsConstructor;
-import org.springframework.batch.core.JobExecutionListener;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.repository.JobRepository;
-import org.springframework.batch.core.repository.support.JobRepositoryFactoryBean;
 import org.springframework.batch.core.step.builder.StepBuilder;
 import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.item.database.JdbcPagingItemReader;
@@ -18,29 +15,17 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.PlatformTransactionManager;
 
-import javax.sql.DataSource;
-
 @AllArgsConstructor
 @Configuration
 public class StepsConfig {
 
-    private final PropertyReader propertyReader;
-
-    @Bean
-    public Tasklet logPropertiesTasklet() {
-        return new LogPropertiesTasklet(propertyReader);
-    }
-
-    @Bean
-    public JobExecutionListener jobCompletionListener() {
-        return new JobCompletionLoggingListener();
-    }
+    private AppPropetiesReader appPropetiesReader;
 
     @Bean
     public Step logPropertiesStep(JobRepository jobRepository,
                                   PlatformTransactionManager transactionManager,
                                   Tasklet logPropertiesTasklet) {
-        return new StepBuilder("logPropertiesStep", jobRepository)
+        return new StepBuilder(JobAndStepValuesEnum.LOG_PROPERTIES_STEP.getValue(), jobRepository)
                 .tasklet(logPropertiesTasklet, transactionManager)
                 .build();
     }
@@ -49,10 +34,10 @@ public class StepsConfig {
     public Step exportPersonsStep(JobRepository jobRepository,
                                   PlatformTransactionManager transactionManager,
                                   JdbcPagingItemReader<Person> personReader,
-                                  @Qualifier("personCsvFileWriter") FlatFileItemWriter<Person> personCsvFileWriter) {
+                                  FlatFileItemWriter<Person> personCsvFileWriter) {
 
-        return new StepBuilder("exportPersonsStep", jobRepository)
-                .<Person, Person>chunk(500, transactionManager)
+        return new StepBuilder(JobAndStepValuesEnum.EXPORT_PERSON_STEP.getValue(), jobRepository)
+                .<Person, Person>chunk(appPropetiesReader.getChunkSize(), transactionManager)
                 .reader(personReader)
                 .writer(personCsvFileWriter)
                 .build();

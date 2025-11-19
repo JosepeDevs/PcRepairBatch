@@ -5,8 +5,10 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties(prefix = "batch.export")
 @Data
-public class PropertyReader {
+public class AppPropetiesReader {
         private String outputDirectory;
         private String outputFile;
         private String delimiter = ",";
+        private boolean includeHeaders = true;
+        private Integer chunkSize = 500;
 }

@@ -1,4 +1,4 @@
-package com.josepedevs.pcrepair.domain;
+package com.josepedevs.pcrepair.domain.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

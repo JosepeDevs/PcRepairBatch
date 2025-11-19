@@ -1,10 +1,10 @@
 package com.josepedevs.pcrepair.config;
 
-import com.josepedevs.pcrepair.propertyreader.PropertyReader;
+import com.josepedevs.pcrepair.propertyreader.AppPropetiesReader;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
-@EnableConfigurationProperties(PropertyReader.class)
+@EnableConfigurationProperties(AppPropetiesReader.class)
 @Configuration
 public class BatchConfig {
 

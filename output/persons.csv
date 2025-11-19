@@ -1,3 +1,4 @@
+ID_USER;METADATA;NAME;NID_PASSPORT;DELETED
 1111111-1111-1111-1111-111111111111;{"age": 28, "city": "New York", "occupation": "Engineer", "notes": "Enjoys hiking"};Alice Johnson;NID123456;0
 22222222-2222-2222-2222-222222222222;{"age": 34, "city": "Elche", "occupation": "Designer", "notes": "Fluent in English"};Babor Martinez;PAS987654;0
 33333333-3333-3333-3333-333333333333;{"age": 41, "city": "Madrid", "occupation": "Teacher", "notes": "Loves literature"};Juan Marron;13245678Q;0

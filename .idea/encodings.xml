@@ -4,10 +4,10 @@
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/josepedevs/pcrepair/UserDataBatchApp.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/josepedevs/pcrepair/config/BatchConfig.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/josepedevs/pcrepair/domain/Person.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/josepedevs/pcrepair/executionplan/StepsConfig.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/josepedevs/pcrepair/propertyreader/PropertyReader.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/josepedevs/pcrepair/domain/model/Person.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/josepedevs/pcrepair/propertyreader/AppPropetiesReader.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/josepedevs/pcrepair/rowmapper/PersonRowMapper.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/josepedevs/pcrepair/steps/StepsConfig.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/josepedevs/pcrepair/writer/PersonCsvWriterConfig.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/config" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/domain" charset="UTF-8" />
