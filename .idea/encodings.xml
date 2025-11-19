@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/josepedevs/pcrepair/UserDataBatchApp.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/josepedevs/pcrepair/config/BatchConfig.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/josepedevs/pcrepair/domain/Person.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/josepedevs/pcrepair/executionplan/StepsConfig.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/josepedevs/pcrepair/propertyreader/PropertyReader.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/josepedevs/pcrepair/rowmapper/PersonRowMapper.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/josepedevs/pcrepair/writer/PersonCsvWriterConfig.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/config" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/domain" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/job" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/propertyreader" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/rowmapper" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/writer" charset="UTF-8" />
+  </component>
+</project>

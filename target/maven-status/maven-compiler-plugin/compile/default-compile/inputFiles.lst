@@ -1,0 +1,13 @@
+C:\Users\jose.navarro\IdeaProjects\PcRepairBatch\src\main\java\com\josepedevs\pcrepair\config\BatchConfig.java
+C:\Users\jose.navarro\IdeaProjects\PcRepairBatch\src\main\java\com\josepedevs\pcrepair\dbreader\Dbreader.java
+C:\Users\jose.navarro\IdeaProjects\PcRepairBatch\src\main\java\com\josepedevs\pcrepair\domain\Person.java
+C:\Users\jose.navarro\IdeaProjects\PcRepairBatch\src\main\java\com\josepedevs\pcrepair\executionplan\JobLauncherConfig.java
+C:\Users\jose.navarro\IdeaProjects\PcRepairBatch\src\main\java\com\josepedevs\pcrepair\executionplan\JobsConfig.java
+C:\Users\jose.navarro\IdeaProjects\PcRepairBatch\src\main\java\com\josepedevs\pcrepair\executionplan\StepsConfig.java
+C:\Users\jose.navarro\IdeaProjects\PcRepairBatch\src\main\java\com\josepedevs\pcrepair\listener\JobCompletionLoggingListener.java
+C:\Users\jose.navarro\IdeaProjects\PcRepairBatch\src\main\java\com\josepedevs\pcrepair\logtasklet\LogPropertiesTasklet.java
+C:\Users\jose.navarro\IdeaProjects\PcRepairBatch\src\main\java\com\josepedevs\pcrepair\propertyreader\PropertyReader.java
+C:\Users\jose.navarro\IdeaProjects\PcRepairBatch\src\main\java\com\josepedevs\pcrepair\rowmapper\PersonRowMapper.java
+C:\Users\jose.navarro\IdeaProjects\PcRepairBatch\src\main\java\com\josepedevs\pcrepair\UserDataBatchApp.java
+C:\Users\jose.navarro\IdeaProjects\PcRepairBatch\src\main\java\com\josepedevs\pcrepair\util\FieldExtractor.java
+C:\Users\jose.navarro\IdeaProjects\PcRepairBatch\src\main\java\com\josepedevs\pcrepair\writer\PersonCsvWriterConfig.java
