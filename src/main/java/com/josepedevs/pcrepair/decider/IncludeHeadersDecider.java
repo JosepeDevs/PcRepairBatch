@@ -1,7 +1,7 @@
 package com.josepedevs.pcrepair.decider;
 
 import com.josepedevs.pcrepair.domain.enums.DeciderValuesEnum;
-import com.josepedevs.pcrepair.propertyreader.AppPropetiesReader;
+import com.josepedevs.pcrepair.propertyreader.AppPropertiesReader;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
 import org.springframework.batch.core.JobExecution;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 public class IncludeHeadersDecider implements JobExecutionDecider {
 
-    private final AppPropetiesReader props;
+    private final AppPropertiesReader props;
 
     @Override
     @NonNull

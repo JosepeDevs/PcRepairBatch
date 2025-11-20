@@ -1,6 +1,6 @@
 package com.josepedevs.pcrepair.tasklets;
 
-import com.josepedevs.pcrepair.propertyreader.AppPropetiesReader;
+import com.josepedevs.pcrepair.propertyreader.AppPropertiesReader;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
@@ -13,15 +13,15 @@ import org.springframework.batch.repeat.RepeatStatus;
 @Slf4j
 public class LogPropertiesTasklet implements Tasklet {
 
-    private final AppPropetiesReader appPropetiesReader;
+    private final AppPropertiesReader appPropertiesReader;
 
     @Override
     public RepeatStatus execute(@NonNull StepContribution contribution, @NonNull ChunkContext chunkContext) {
         log.info("Export Properties ↓");
-        log.info("Output Directory: {}", appPropetiesReader.getOutputDirectory());
-        log.info("Output File: {}", appPropetiesReader.getOutputFile());
-        log.info("Delimiter: {}", appPropetiesReader.getDelimiter());
-        log.info("Include headers: {}", appPropetiesReader.isIncludeHeaders());
+        log.info("Output Directory: {}", appPropertiesReader.getOutputDirectory());
+        log.info("Output File: {}", appPropertiesReader.getOutputFile());
+        log.info("Delimiter: {}", appPropertiesReader.getDelimiter());
+        log.info("Include headers: {}", appPropertiesReader.isIncludeHeaders());
         return RepeatStatus.FINISHED;
     }
 }

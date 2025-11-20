@@ -20,10 +20,10 @@ public class JobCompletionLoggingListener implements JobExecutionListener {
             log.info("{} - {}", se.getStepName(), se.getStatus());
             se.getFailureExceptions().forEach(Throwable::printStackTrace);
         });
-
-        if (jobExecution.getStatus() == BatchStatus.COMPLETED) {
+        final var status = jobExecution.getStatus();
+        if (status == BatchStatus.COMPLETED) {
             log.info("Job finished successfully.");
-        } else if (jobExecution.getStatus() == BatchStatus.FAILED) {
+        } else if (status == BatchStatus.FAILED) {
             log.info("Job failed.");
         }
     }

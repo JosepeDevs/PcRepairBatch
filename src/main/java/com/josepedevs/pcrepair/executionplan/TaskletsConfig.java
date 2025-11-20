@@ -1,7 +1,7 @@
-package com.josepedevs.pcrepair.jobs;
+package com.josepedevs.pcrepair.executionplan;
 
 import com.josepedevs.pcrepair.listener.JobCompletionLoggingListener;
-import com.josepedevs.pcrepair.propertyreader.AppPropetiesReader;
+import com.josepedevs.pcrepair.propertyreader.AppPropertiesReader;
 import com.josepedevs.pcrepair.tasklets.LogPropertiesTasklet;
 import lombok.AllArgsConstructor;
 import org.springframework.batch.core.JobExecutionListener;
@@ -13,11 +13,11 @@ import org.springframework.context.annotation.Configuration;
 @AllArgsConstructor
 public class TaskletsConfig {
 
-    private final AppPropetiesReader appPropetiesReader;
+    private final AppPropertiesReader appPropertiesReader;
 
     @Bean
     public Tasklet logPropertiesTasklet() {
-        return new LogPropertiesTasklet(appPropetiesReader);
+        return new LogPropertiesTasklet(appPropertiesReader);
     }
 
     @Bean

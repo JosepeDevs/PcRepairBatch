@@ -1,6 +1,6 @@
 package com.josepedevs.pcrepair.util;
 
-import com.josepedevs.pcrepair.propertyreader.AppPropetiesReader;
+import com.josepedevs.pcrepair.propertyreader.AppPropertiesReader;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.stereotype.Service;
@@ -13,7 +13,7 @@ import java.nio.file.Paths;
 @Slf4j
 public class FolderCreator {
 
-    public FileSystemResource createOutputResourceIfNotExists(AppPropetiesReader props) {
+    public FileSystemResource createOutputResourceIfNotExists(AppPropertiesReader props) {
         final var dir = Paths.get(props.getOutputDirectory());
         try {
             if (!Files.exists(dir)) {
