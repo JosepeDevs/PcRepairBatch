@@ -18,26 +18,13 @@ public class JobsConfig {
     public Job exportPersonsJob(JobRepository jobRepository,
                                 Step logPropertiesStep,
                                 Step exportPersonsStep,
-                                Step writeHeadersStep,
-                                IncludeHeadersDecider decider,
                                 JobExecutionListener jobCompletionListener) {
 
         return new JobBuilder(JobAndStepValuesEnum.JOB_NAME.getValue(), jobRepository)
                 .start(logPropertiesStep)
-                .next(decider)
-                .from(decider)
-                    .on(DeciderValuesEnum.INCLUDE_HEADERS.getDeciderValue())
-                    .to(writeHeadersStep)
-                    .next(exportPersonsStep)
-                .from(decider)
-                    .on(DeciderValuesEnum.SKIP_HEADERS.getDeciderValue())
-                    .to(exportPersonsStep)
-                .from(decider)
-                    .on("*") // unexpected decider statuses
-                    .fail()
-                .end()
+                .next(exportPersonsStep)
                 .listener(jobCompletionListener)
                 .build();
     }
-
 }
+

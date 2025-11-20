@@ -11,11 +11,14 @@ Once that is deployed and the database is up, executing this will produce the cs
 
 ## Configurability
 
-This is configurable in application.propeties changing:
+This is configurable in application.properties changing:
 
 batch.export.output-directory=output
-batch.export.output-file=persons.csv
+batch.export.output-file=persons.txt
 batch.export.delimiter=;
+batch.export.include-headers=true
+batch.export.chunk-size=500
+batch.export.export-format=csv
 
 you will be able to change where the csv is created, the name of the file and the delimiter.
 

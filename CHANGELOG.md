@@ -5,6 +5,16 @@ and adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.1.0]
+
+### Changed
+
+- Refactor csv file creation to use same strategy than json file writer
+
+### Added
+
+- Added feature to create file in Json format.
+
 ## [1.0.0]
 
 ### Changed

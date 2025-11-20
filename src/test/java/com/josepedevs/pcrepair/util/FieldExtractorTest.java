@@ -1,5 +1,6 @@
 package com.josepedevs.pcrepair.util;
 
+import lombok.Data;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
@@ -36,16 +37,18 @@ class FieldExtractorTest {
 
         assertEquals("Class must not be null", exception.getMessage());
     }
-
+    @Data
     private static class DummyClass {
         private int id;
         private String name;
     }
 
+    @Data
     static class OuterClass {
         private String outerField;
 
         // Non-static inner class -> compiler will generate synthetic "this$0" field
+        @Data
         class InnerClass {
             private String realField;
         }
