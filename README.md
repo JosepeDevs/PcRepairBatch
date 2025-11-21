@@ -1,9 +1,11 @@
 # PcRepairBatch
 
-## Description
-Batch service that creates a CSV with the users, with spring boot we scan all beans and the CommandLineRunner executes the job.
+## Extensive documentation in https://app.devin.ai/wiki/JosepeDevs/PcRepairBatch
 
-After execution in output source should appear the person.csv
+## Description
+Batch service that creates a CSV or JSON file with the users (configurable), with spring boot we scan all beans and the CommandLineRunner executes the job.
+
+After execution in "output" folder (configurable) should appear the person.csv
 
 ## Set up
 For this batch service to work you need to previously have deployed the database (See docker-compose in docker-jpd folder within https://github.com/JosepeDevs/PcRepairPersonData)
