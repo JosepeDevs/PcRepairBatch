@@ -1,7 +1,5 @@
-package com.josepedevs.pcrepair.executionplan;
+package com.josepedevs.pcrepair.jobs;
 
-import com.josepedevs.pcrepair.decider.IncludeHeadersDecider;
-import com.josepedevs.pcrepair.domain.enums.DeciderValuesEnum;
 import com.josepedevs.pcrepair.domain.enums.JobAndStepValuesEnum;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobExecutionListener;

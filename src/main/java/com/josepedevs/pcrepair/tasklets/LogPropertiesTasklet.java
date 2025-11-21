@@ -17,7 +17,7 @@ public class LogPropertiesTasklet implements Tasklet {
 
     @Override
     public RepeatStatus execute(@NonNull StepContribution contribution, @NonNull ChunkContext chunkContext) {
-        log.info("Export Properties ↓");
+        log.info("Export Properties bellow...");
         log.info("Output Directory: {}", appPropertiesReader.getOutputDirectory());
         log.info("Output File: {}", appPropertiesReader.getOutputFile());
         log.info("Delimiter: {}", appPropertiesReader.getDelimiter());

@@ -1,5 +1,6 @@
 package com.josepedevs.pcrepair.joblauncher;
 
+import com.josepedevs.pcrepair.jobs.joblauncher.JobLauncherConfig;
 import org.junit.jupiter.api.Test;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobParameters;

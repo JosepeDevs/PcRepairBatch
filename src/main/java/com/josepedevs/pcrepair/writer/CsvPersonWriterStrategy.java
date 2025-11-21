@@ -24,7 +24,7 @@ public class CsvPersonWriterStrategy implements PersonWriterStrategy {
 
         final var writer = new FlatFileItemWriter<Person>();
         writer.setResource(folderCreator.createOutputResourceIfNotExists(props));
-        writer.setAppendAllowed(false); // write fresh
+        writer.setAppendAllowed(false);
 
         if (props.isIncludeHeaders()) {
             writer.setHeaderCallback(headerCallback);

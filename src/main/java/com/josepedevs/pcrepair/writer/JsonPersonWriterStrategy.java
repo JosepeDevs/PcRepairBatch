@@ -9,7 +9,6 @@ import com.josepedevs.pcrepair.util.FolderCreator;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.item.file.FlatFileItemWriter;
-import org.springframework.batch.item.file.builder.FlatFileItemWriterBuilder;
 import org.springframework.batch.item.file.transform.LineAggregator;
 import org.springframework.stereotype.Component;
 
@@ -29,7 +28,7 @@ public class JsonPersonWriterStrategy implements PersonWriterStrategy {
         writer.setHeaderCallback(w -> w.write("["));
         writer.setFooterCallback(w -> w.write("]"));
 
-        writer.setLineAggregator(new LineAggregator<Person>() {
+        writer.setLineAggregator(new LineAggregator<>() {
 
             private boolean first = true;
 

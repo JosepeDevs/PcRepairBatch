@@ -18,14 +18,11 @@ class FieldExtractorTest {
         assertArrayEquals(new String[]{"id", "name"}, result);
     }
 
-
     @Test
-    void extractFieldNames_GivenClassWithSyntheticFields_ThenIgnoresSyntheticFields() {
+    void extractFieldNames_GivenNull_ThenThrows() {
         final var extractor = new FieldExtractor();
-
-        final var result = extractor.extractFieldNames(OuterClass.InnerClass.class);
-
-        assertArrayEquals(new String[]{"realField"}, result);
+        assertThrows(IllegalArgumentException.class,
+                () -> extractor.extractFieldNames(null));
     }
 
     @Test
@@ -37,6 +34,16 @@ class FieldExtractorTest {
 
         assertEquals("Class must not be null", exception.getMessage());
     }
+
+    @Test
+    void extractFieldNames_GivenClassWithSyntheticFields_ThenIgnoresSyntheticFields() {
+        final var extractor = new FieldExtractor();
+
+        final var result = extractor.extractFieldNames(OuterClass.InnerClass.class);
+
+        assertArrayEquals(new String[]{"realField"}, result);
+    }
+
     @Data
     private static class DummyClass {
         private int id;
