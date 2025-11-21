@@ -1,4 +1,4 @@
-package com.josepedevs.pcrepair.joblauncher;
+package com.josepedevs.pcrepair.jobs.joblauncher;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;

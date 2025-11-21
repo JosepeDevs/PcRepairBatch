@@ -1,26 +1,33 @@
 package com.josepedevs.pcrepair.factory;
 
-import com.josepedevs.pcrepair.domain.interfaces.OutputResourceStrategy;
-import com.josepedevs.pcrepair.domain.model.Person;
-import com.josepedevs.pcrepair.propertyreader.AppPropertiesReader;
-import lombok.RequiredArgsConstructor;
-import org.springframework.batch.item.file.FlatFileItemWriter;
+import com.josepedevs.pcrepair.domain.enums.FileFormatsEnum;
+import com.josepedevs.pcrepair.domain.interfaces.PersonWriterStrategy;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-@RequiredArgsConstructor
 @Component
 public class PersonWriterFactory {
 
-    private final OutputResourceStrategy resourceStrategy;
-    private final LineAggregatorFactory aggregatorFactory;
+    @Qualifier("csvPersonWriterStrategy")
+    private final PersonWriterStrategy csvStrategy;
 
-    //TODO añadir writer de Json
+    @Qualifier("jsonPersonWriterStrategy")
+    private final PersonWriterStrategy jsonStrategy;
 
-    public FlatFileItemWriter<Person> createWriter(AppPropertiesReader props) {
-        final var writer = new FlatFileItemWriter<Person>();
-        writer.setResource(resourceStrategy.createOutputResource(props));
-        writer.setAppendAllowed(true);
-        writer.setLineAggregator(aggregatorFactory.createLineAggregator(props));
-        return writer;
+    public PersonWriterFactory(
+            @Qualifier("csvPersonWriterStrategy") PersonWriterStrategy csvStrategy,
+            @Qualifier("jsonPersonWriterStrategy") PersonWriterStrategy jsonStrategy
+    ) {
+        this.csvStrategy = csvStrategy;
+        this.jsonStrategy = jsonStrategy;
+    }
+
+    public PersonWriterStrategy getStrategy(String format) {
+        final var fileFormat = FileFormatsEnum.from(format);
+
+        return switch (fileFormat) {
+            case CSV -> csvStrategy;
+            case JSON -> jsonStrategy;
+        };
     }
 }

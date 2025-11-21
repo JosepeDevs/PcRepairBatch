@@ -15,6 +15,7 @@ class AppPropertiesReaderTest {
         assertEquals("persons.txt", props.getOutputFile());
         assertEquals("output", props.getOutputDirectory());
         assertEquals(",", props.getDelimiter());
+        assertEquals("csv", props.getExportFormat());
         assertTrue(props.isIncludeHeaders());
         assertEquals(500, props.getChunkSize());
     }
@@ -28,10 +29,12 @@ class AppPropertiesReaderTest {
         props.setDelimiter(";");
         props.setIncludeHeaders(false);
         props.setChunkSize(100);
+        props.setExportFormat("json");
 
         assertEquals("/tmp", props.getOutputDirectory());
         assertEquals("file.csv", props.getOutputFile());
         assertEquals(";", props.getDelimiter());
+        assertEquals("json", props.getExportFormat());
         assertFalse(props.isIncludeHeaders());
         assertEquals(100, props.getChunkSize());
     }

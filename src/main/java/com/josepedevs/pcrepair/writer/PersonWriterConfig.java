@@ -9,17 +9,22 @@ import org.springframework.batch.item.file.FlatFileItemWriter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.Objects;
+
 @Slf4j
 @Configuration
 @RequiredArgsConstructor
-public class PersonCsvWriterConfig {
+public class PersonWriterConfig {
 
     private final PersonWriterFactory writerFactory;
 
-    @Bean("personCsvFileWriter")
-    public FlatFileItemWriter<Person> personCsvWriter(AppPropertiesReader props) {
-        log.info("Writing person values...");
-        return writerFactory.createWriter(props);
+    @Bean("personFileWriter")
+    public FlatFileItemWriter<Person> personWriter(AppPropertiesReader props) {
+        if(Objects.isNull(props.getExportFormat())) {
+            throw new IllegalStateException("No format specified in application.properties and/or no default value included.");
+        }
+        final var strategy = writerFactory.getStrategy(props.getExportFormat());
+        return strategy.createWriter(props);
     }
 
 }

@@ -1,0 +1,5 @@
+[
+{"idUser":"1111111-1111-1111-1111-111111111111","metadata":"{\"age\": 28, \"city\": \"New York\", \"occupation\": \"Engineer\", \"notes\": \"Enjoys hiking\"}","name":"Alice Johnson","nidPassport":"NID123456","deleted":0}
+,{"idUser":"22222222-2222-2222-2222-222222222222","metadata":"{\"age\": 34, \"city\": \"Elche\", \"occupation\": \"Designer\", \"notes\": \"Fluent in English\"}","name":"Babor Martinez","nidPassport":"PAS987654","deleted":0}
+,{"idUser":"33333333-3333-3333-3333-333333333333","metadata":"{\"age\": 41, \"city\": \"Madrid\", \"occupation\": \"Teacher\", \"notes\": \"Loves literature\"}","name":"Juan Marron","nidPassport":"13245678Q","deleted":0}
+]

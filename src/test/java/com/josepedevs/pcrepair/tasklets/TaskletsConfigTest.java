@@ -1,8 +1,7 @@
-package com.josepedevs.pcrepair.executionplan;
+package com.josepedevs.pcrepair.tasklets;
 
 import com.josepedevs.pcrepair.listener.JobCompletionLoggingListener;
 import com.josepedevs.pcrepair.propertyreader.AppPropertiesReader;
-import com.josepedevs.pcrepair.tasklets.LogPropertiesTasklet;
 import org.junit.jupiter.api.Test;
 import org.springframework.batch.core.JobExecutionListener;
 import org.springframework.batch.core.step.tasklet.Tasklet;

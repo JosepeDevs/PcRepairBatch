@@ -1,7 +1,5 @@
-package com.josepedevs.pcrepair.executionplan;
+package com.josepedevs.pcrepair.jobs;
 
-import com.josepedevs.pcrepair.decider.IncludeHeadersDecider;
-import com.josepedevs.pcrepair.domain.enums.DeciderValuesEnum;
 import com.josepedevs.pcrepair.domain.enums.JobAndStepValuesEnum;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobExecutionListener;
@@ -18,26 +16,13 @@ public class JobsConfig {
     public Job exportPersonsJob(JobRepository jobRepository,
                                 Step logPropertiesStep,
                                 Step exportPersonsStep,
-                                Step writeHeadersStep,
-                                IncludeHeadersDecider decider,
                                 JobExecutionListener jobCompletionListener) {
 
         return new JobBuilder(JobAndStepValuesEnum.JOB_NAME.getValue(), jobRepository)
                 .start(logPropertiesStep)
-                .next(decider)
-                .from(decider)
-                    .on(DeciderValuesEnum.INCLUDE_HEADERS.getDeciderValue())
-                    .to(writeHeadersStep)
-                    .next(exportPersonsStep)
-                .from(decider)
-                    .on(DeciderValuesEnum.SKIP_HEADERS.getDeciderValue())
-                    .to(exportPersonsStep)
-                .from(decider)
-                    .on("*") // unexpected decider statuses
-                    .fail()
-                .end()
+                .next(exportPersonsStep)
                 .listener(jobCompletionListener)
                 .build();
     }
-
 }
+

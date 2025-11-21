@@ -11,4 +11,5 @@ public class AppPropertiesReader {
         private String delimiter = ",";
         private boolean includeHeaders = true;
         private Integer chunkSize = 500;
+        private String exportFormat = "csv";
 }
