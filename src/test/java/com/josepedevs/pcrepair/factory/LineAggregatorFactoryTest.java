@@ -1,8 +1,9 @@
 package com.josepedevs.pcrepair.factory;
 
+import com.josepedevs.pcrepair.application.util.FieldExtractor;
+import com.josepedevs.pcrepair.config.AppPropertiesReader;
 import com.josepedevs.pcrepair.domain.model.Person;
-import com.josepedevs.pcrepair.propertyreader.AppPropertiesReader;
-import com.josepedevs.pcrepair.util.FieldExtractor;
+import com.josepedevs.pcrepair.infra.writer.factory.LineAggregatorFactory;
 import org.junit.jupiter.api.Test;
 import org.springframework.batch.item.file.transform.LineAggregator;
 
