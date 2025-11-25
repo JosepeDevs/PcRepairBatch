@@ -8,6 +8,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.UUID;
+
 @Configuration
 @Slf4j
 public class JobLauncherConfig {
@@ -18,7 +20,7 @@ public class JobLauncherConfig {
             try {
                 jobLauncherConfig.run(exportPersonsJob,
                         new JobParametersBuilder()
-                                .addLong("timestamp", System.currentTimeMillis())
+                                .addString("run.id", UUID.randomUUID().toString() + System.currentTimeMillis(), true)
                                 .toJobParameters());
             } catch (Exception e) {
                 log.error("Failed to run job", e);
