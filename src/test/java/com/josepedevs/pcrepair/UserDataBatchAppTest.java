@@ -1,10 +1,9 @@
 package com.josepedevs.pcrepair;
 
-import com.josepedevs.pcrepair.factory.PersonWriterFactory;
-import com.josepedevs.pcrepair.propertyreader.AppPropertiesReader;
+import com.josepedevs.pcrepair.config.AppPropertiesReader;
+import com.josepedevs.pcrepair.infra.writer.factory.PersonWriterFactory;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
-import org.springframework.batch.item.file.FlatFileItemWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
@@ -48,12 +47,6 @@ class UserDataBatchAppTest {
 
         final var strategy = writerFactory.getStrategy("json");
         assertEquals("JsonPersonWriterStrategy", strategy.getClass().getSimpleName());
-    }
-
-    @Test
-    void personFileWriter_GivenFullContext_ThenWriterIsConfiguredCorrectly() {
-        final var writer = context.getBean("personFileWriter", FlatFileItemWriter.class);
-        assertNotNull(writer);
     }
 
 }
