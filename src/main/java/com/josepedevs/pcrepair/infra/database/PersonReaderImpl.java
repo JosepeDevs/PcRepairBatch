@@ -6,7 +6,6 @@ import com.josepedevs.pcrepair.domain.exceptions.BatchException;
 import com.josepedevs.pcrepair.domain.interfaces.PersonReader;
 import com.josepedevs.pcrepair.domain.model.Person;
 import com.josepedevs.pcrepair.infra.database.rowmapper.PersonRowMapper;
-import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.item.ExecutionContext;
@@ -29,10 +28,9 @@ public class PersonReaderImpl implements PersonReader {
 
     private static final String ERROR_MESSAGE = "Error reading people from database. More info: %s";
     private final DataSource dataSource;
-    private JdbcPagingItemReader<Person> reader;
 
-    @PostConstruct
-    public void init() throws Exception {
+    @Override
+    public Stream<Person> readAll() {
         OraclePagingQueryProvider provider = new OraclePagingQueryProvider();
         provider.setSelectClause(
                 Stream.of(PersonColumnsEnum.values())
@@ -43,17 +41,18 @@ public class PersonReaderImpl implements PersonReader {
         provider.setWhereClause(PersonColumnsEnum.DELETED.getColumnName() + "= 0");
         provider.setSortKeys(Map.of(PersonColumnsEnum.ID_USER.getColumnName(), Order.ASCENDING));
 
-        reader = new JdbcPagingItemReader<>();
+        JdbcPagingItemReader<Person> reader = new JdbcPagingItemReader<>();
         reader.setDataSource(dataSource);
         reader.setPageSize(10);
         reader.setQueryProvider(provider);
         reader.setRowMapper(new PersonRowMapper());
-        reader.afterPropertiesSet();
+        try {
+            reader.afterPropertiesSet();
+        } catch (Exception e) {
+            throw new BatchException("could not do reader after properties were set", e.getLocalizedMessage());
+        }
         reader.open(new ExecutionContext());
-    }
 
-    @Override
-    public Stream<Person> readAll() {
         List<Person> people = new ArrayList<>();
         Person p;
         try {
@@ -63,7 +62,8 @@ public class PersonReaderImpl implements PersonReader {
         } catch (Exception e) {
             final var msg = String.format(ERROR_MESSAGE, e.getLocalizedMessage());
             log.error(msg);
-            throw new BatchException(msg);        }
+            throw new BatchException(msg);
+        }
         return people.stream();
     }
 

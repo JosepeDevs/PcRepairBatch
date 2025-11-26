@@ -1,11 +1,11 @@
 package com.josepedevs.pcrepair.domain;
 
+import com.josepedevs.pcrepair.infra.writer.PersonFileWriter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.springframework.batch.core.BatchStatus;
 import org.springframework.batch.core.Job;
-import org.springframework.batch.item.file.FlatFileItemWriter;
 import org.springframework.batch.test.JobLauncherTestUtils;
 import org.springframework.batch.test.JobRepositoryTestUtils;
 import org.springframework.batch.test.context.SpringBatchTest;
@@ -57,7 +57,7 @@ class PersonJobIntegrationTest {
         final var writer = context.getBean("personFileWriter");
 
         assertNotNull(writer);
-        assertInstanceOf(FlatFileItemWriter.class, writer);
+        assertInstanceOf(PersonFileWriter.class, writer);
     }
 }
 

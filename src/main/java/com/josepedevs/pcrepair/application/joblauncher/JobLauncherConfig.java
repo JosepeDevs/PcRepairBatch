@@ -20,7 +20,8 @@ public class JobLauncherConfig {
             try {
                 jobLauncherConfig.run(exportPersonsJob,
                         new JobParametersBuilder()
-                                .addString("run.id", UUID.randomUUID().toString() + System.currentTimeMillis(), true)
+                                .addString("run.id", UUID.randomUUID() + "_" + System.currentTimeMillis(), true)
+                                .addLong("timestamp", System.currentTimeMillis())
                                 .toJobParameters());
             } catch (Exception e) {
                 log.error("Failed to run job", e);
