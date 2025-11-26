@@ -1,6 +1,6 @@
 package com.josepedevs.pcrepair.infra.rest;
 
-import com.josepedevs.pcrepair.infra.scheduler.ScheduledJobLauncher;
+import com.josepedevs.pcrepair.application.scheduler.ScheduledJobLauncher;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatusCode;
 
@@ -19,6 +19,6 @@ class JobControllerTest {
 
         verify(launcher).runJob();
         assertEquals("Job started", response.getBody());
-        assertEquals(HttpStatusCode.valueOf(200), response.getStatusCode());
+        assertEquals(HttpStatusCode.valueOf(202), response.getStatusCode());
     }
 }

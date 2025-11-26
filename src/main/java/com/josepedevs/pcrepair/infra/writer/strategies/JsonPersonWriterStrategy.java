@@ -8,12 +8,14 @@ import com.josepedevs.pcrepair.domain.model.Person;
 import com.josepedevs.pcrepair.infra.writer.strategy.PersonWriterStrategy;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.item.file.FlatFileItemWriter;
 import org.springframework.batch.item.file.transform.LineAggregator;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
+@Slf4j
 public class JsonPersonWriterStrategy implements PersonWriterStrategy {
 
     private final FolderCreator folderCreator;
@@ -22,7 +24,8 @@ public class JsonPersonWriterStrategy implements PersonWriterStrategy {
     @Override
     public FlatFileItemWriter<Person> createWriter(AppPropertiesReader props) {
         final var writer = new FlatFileItemWriter<Person>();
-        writer.setResource(folderCreator.createOutputResourceIfNotExists(props));
+        final var resource = folderCreator.createOutputResourceIfNotExists(props);
+        writer.setResource(resource);
         writer.setAppendAllowed(false);
 
         writer.setHeaderCallback(w -> w.write("["));
@@ -48,7 +51,7 @@ public class JsonPersonWriterStrategy implements PersonWriterStrategy {
                 }
             }
         });
-
+        log.info("Writing JSON to {}", resource.getFile().getAbsolutePath());
         return writer;
     }
 }
