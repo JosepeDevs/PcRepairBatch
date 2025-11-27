@@ -16,8 +16,7 @@ public class PersonWriterFactory {
 
     public PersonWriterFactory(
             @Qualifier("csvPersonWriterStrategy") PersonWriterStrategy csvStrategy,
-            @Qualifier("jsonPersonWriterStrategy") PersonWriterStrategy jsonStrategy
-    ) {
+            @Qualifier("jsonPersonWriterStrategy") PersonWriterStrategy jsonStrategy) {
         this.csvStrategy = csvStrategy;
         this.jsonStrategy = jsonStrategy;
     }

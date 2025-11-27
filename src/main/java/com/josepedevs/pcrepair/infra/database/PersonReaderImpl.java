@@ -6,6 +6,12 @@ import com.josepedevs.pcrepair.domain.exceptions.BatchException;
 import com.josepedevs.pcrepair.domain.interfaces.PersonReader;
 import com.josepedevs.pcrepair.domain.model.Person;
 import com.josepedevs.pcrepair.infra.database.rowmapper.PersonRowMapper;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import javax.sql.DataSource;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.item.ExecutionContext;
@@ -13,13 +19,6 @@ import org.springframework.batch.item.database.JdbcPagingItemReader;
 import org.springframework.batch.item.database.Order;
 import org.springframework.batch.item.database.support.OraclePagingQueryProvider;
 import org.springframework.stereotype.Component;
-
-import javax.sql.DataSource;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @RequiredArgsConstructor
 @Slf4j
@@ -32,11 +31,9 @@ public class PersonReaderImpl implements PersonReader {
     @Override
     public Stream<Person> readAll() {
         OraclePagingQueryProvider provider = new OraclePagingQueryProvider();
-        provider.setSelectClause(
-                Stream.of(PersonColumnsEnum.values())
-                        .map(PersonColumnsEnum::getColumnName)
-                        .collect(Collectors.joining(", "))
-        );
+        provider.setSelectClause(Stream.of(PersonColumnsEnum.values())
+                .map(PersonColumnsEnum::getColumnName)
+                .collect(Collectors.joining(", ")));
         provider.setFromClause(PersonDatabase.getDatabaseName());
         provider.setWhereClause(PersonColumnsEnum.DELETED.getColumnName() + "= 0");
         provider.setSortKeys(Map.of(PersonColumnsEnum.ID_USER.getColumnName(), Order.ASCENDING));
@@ -66,5 +63,4 @@ public class PersonReaderImpl implements PersonReader {
         }
         return people.stream();
     }
-
 }

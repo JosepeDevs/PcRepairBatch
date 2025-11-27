@@ -1,9 +1,9 @@
 package com.josepedevs.pcrepair.domain.enums;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
 
 class DeciderValuesEnumTest {
 
@@ -20,6 +20,7 @@ class DeciderValuesEnumTest {
     void deciderValuesEnum_ValuesArray_ThenContainsAllEnums() {
         final var values = DeciderValuesEnum.values();
 
-        assertArrayEquals(new DeciderValuesEnum[]{DeciderValuesEnum.INCLUDE_HEADERS, DeciderValuesEnum.SKIP_HEADERS}, values);
+        assertArrayEquals(
+                new DeciderValuesEnum[] {DeciderValuesEnum.INCLUDE_HEADERS, DeciderValuesEnum.SKIP_HEADERS}, values);
     }
 }

@@ -5,6 +5,22 @@ and adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.3.0]
+
+### Changed
+
+- Rest call now accepts properties to customize job execution (for example, export csv or json, along other configurable variables).
+
+## [1.2.0]
+
+### Changed
+
+- Refactor to approach an hexagonal architecture
+
+### Added
+
+- Added rest call to execute job
+
 ## [1.1.0]
 
 ### Changed

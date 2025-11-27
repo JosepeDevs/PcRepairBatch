@@ -1,18 +1,17 @@
 package com.josepedevs.pcrepair.infra.database;
 
-import com.josepedevs.pcrepair.domain.exceptions.BatchException;
-import com.josepedevs.pcrepair.domain.model.Person;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import javax.sql.DataSource;
-import java.util.stream.Stream;
-
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
+
+import com.josepedevs.pcrepair.domain.exceptions.BatchException;
+import com.josepedevs.pcrepair.domain.model.Person;
+import java.util.stream.Stream;
+import javax.sql.DataSource;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 class PersonReaderImplTest {
 
@@ -34,10 +33,7 @@ class PersonReaderImplTest {
 
         final var result = emptyReader.readAll();
 
-        assertAll(
-                () -> assertNotNull(result),
-                () -> assertEquals(0, result.count())
-        );
+        assertAll(() -> assertNotNull(result), () -> assertEquals(0, result.count()));
     }
 
     @Test
@@ -53,10 +49,7 @@ class PersonReaderImplTest {
 
         final var result = readerWithData.readAll();
 
-        assertAll(
-                () -> assertNotNull(result),
-                () -> assertEquals(2, result.count())
-        );
+        assertAll(() -> assertNotNull(result), () -> assertEquals(2, result.count()));
     }
 
     @Test
@@ -71,9 +64,6 @@ class PersonReaderImplTest {
 
         final var exception = assertThrows(BatchException.class, readerWithException::readAll);
 
-        assertAll(
-                () -> assertNotNull(exception),
-                () -> assertEquals(msg, exception.getMessage())
-        );
+        assertAll(() -> assertNotNull(exception), () -> assertEquals(msg, exception.getMessage()));
     }
 }

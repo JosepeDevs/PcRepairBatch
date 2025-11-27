@@ -1,5 +1,8 @@
 package com.josepedevs.pcrepair;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 import com.josepedevs.pcrepair.config.AppPropertiesReader;
 import com.josepedevs.pcrepair.infra.writer.factory.PersonWriterFactory;
 import org.junit.jupiter.api.Test;
@@ -7,9 +10,6 @@ import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -48,5 +48,4 @@ class UserDataBatchAppTest {
         final var strategy = writerFactory.getStrategy("json");
         assertEquals("JsonPersonWriterStrategy", strategy.getClass().getSimpleName());
     }
-
 }

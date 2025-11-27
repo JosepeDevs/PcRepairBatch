@@ -47,5 +47,3 @@ public class CsvPersonWriterStrategy implements PersonWriterStrategy {
         return writer;
     }
 }
-
-

@@ -7,4 +7,3 @@ import org.springframework.batch.item.file.FlatFileItemWriter;
 public interface PersonWriterStrategy {
     FlatFileItemWriter<Person> createWriter(AppPropertiesReader props);
 }
-

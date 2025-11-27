@@ -17,9 +17,8 @@ import org.springframework.transaction.PlatformTransactionManager;
 public class ExportPersonStepsConfig {
 
     @Bean
-    public Step logPropertiesStep(JobRepository jobRepository,
-                                  PlatformTransactionManager transactionManager,
-                                  Tasklet logPropertiesTasklet) {
+    public Step logPropertiesStep(
+            JobRepository jobRepository, PlatformTransactionManager transactionManager, Tasklet logPropertiesTasklet) {
         return new StepBuilder(JobAndStepValuesEnum.LOG_PROPERTIES_STEP.getValue(), jobRepository)
                 .tasklet(logPropertiesTasklet, transactionManager)
                 .build();
@@ -39,5 +38,4 @@ public class ExportPersonStepsConfig {
                 .writer(writer)
                 .build();
     }
-
 }

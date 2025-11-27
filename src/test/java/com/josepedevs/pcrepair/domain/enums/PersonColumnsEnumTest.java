@@ -1,9 +1,9 @@
 package com.josepedevs.pcrepair.domain.enums;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
 
 class PersonColumnsEnumTest {
 
@@ -26,12 +26,14 @@ class PersonColumnsEnumTest {
     void personColumnsEnum_ValuesArray_ThenContainsAllEnums() {
         final var values = PersonColumnsEnum.values();
 
-        assertArrayEquals(new PersonColumnsEnum[]{
-                PersonColumnsEnum.ID_USER,
-                PersonColumnsEnum.METADATA,
-                PersonColumnsEnum.NAME,
-                PersonColumnsEnum.NID_PASSPORT,
-                PersonColumnsEnum.DELETED
-        }, values);
+        assertArrayEquals(
+                new PersonColumnsEnum[] {
+                    PersonColumnsEnum.ID_USER,
+                    PersonColumnsEnum.METADATA,
+                    PersonColumnsEnum.NAME,
+                    PersonColumnsEnum.NID_PASSPORT,
+                    PersonColumnsEnum.DELETED
+                },
+                values);
     }
 }

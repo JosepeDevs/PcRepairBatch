@@ -1,19 +1,18 @@
 package com.josepedevs.pcrepair.infra.database.rowmapper;
 
-import com.josepedevs.pcrepair.domain.enums.PersonColumnsEnum;
-import com.josepedevs.pcrepair.domain.model.Person;
-import org.junit.jupiter.api.Test;
-import org.springframework.jdbc.core.RowMapper;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+
+import com.josepedevs.pcrepair.domain.enums.PersonColumnsEnum;
+import com.josepedevs.pcrepair.domain.model.Person;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import org.junit.jupiter.api.Test;
+import org.springframework.jdbc.core.RowMapper;
 
 class PersonRowMapperTest {
 

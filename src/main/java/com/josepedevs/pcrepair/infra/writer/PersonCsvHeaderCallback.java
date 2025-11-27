@@ -1,13 +1,12 @@
 package com.josepedevs.pcrepair.infra.writer;
 
 import com.josepedevs.pcrepair.domain.enums.PersonColumnsEnum;
-import org.springframework.batch.item.file.FlatFileHeaderCallback;
-import org.springframework.stereotype.Component;
-
 import java.io.IOException;
 import java.io.Writer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import org.springframework.batch.item.file.FlatFileHeaderCallback;
+import org.springframework.stereotype.Component;
 
 @Component
 public class PersonCsvHeaderCallback implements FlatFileHeaderCallback {

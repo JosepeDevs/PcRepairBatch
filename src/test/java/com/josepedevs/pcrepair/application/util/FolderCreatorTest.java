@@ -1,17 +1,16 @@
 package com.josepedevs.pcrepair.application.util;
 
-import com.josepedevs.pcrepair.config.AppPropertiesReader;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
-
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+
+import com.josepedevs.pcrepair.config.AppPropertiesReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 class FolderCreatorTest {
 
@@ -50,5 +49,4 @@ class FolderCreatorTest {
 
         assertEquals(existingDir.resolve(outputFile).toFile(), resource.getFile());
     }
-
 }

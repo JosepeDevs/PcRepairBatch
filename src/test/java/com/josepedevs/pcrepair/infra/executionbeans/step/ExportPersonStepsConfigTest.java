@@ -1,5 +1,11 @@
 package com.josepedevs.pcrepair.infra.executionbeans.step;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 import com.josepedevs.pcrepair.config.AppPropertiesReader;
 import com.josepedevs.pcrepair.infra.database.SpringBatchPersonReaderAdapter;
 import org.junit.jupiter.api.BeforeEach;
@@ -8,12 +14,6 @@ import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.item.file.FlatFileItemWriter;
 import org.springframework.transaction.PlatformTransactionManager;
-
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 class ExportPersonStepsConfigTest {
 
@@ -32,10 +32,7 @@ class ExportPersonStepsConfigTest {
 
         final var step = config.logPropertiesStep(jobRepository, transactionManager, tasklet);
 
-        assertAll(
-                () -> assertNotNull(step),
-                () -> assertEquals("logPropertiesStep", step.getName())
-        );
+        assertAll(() -> assertNotNull(step), () -> assertEquals("logPropertiesStep", step.getName()));
     }
 
     @Test
@@ -50,9 +47,6 @@ class ExportPersonStepsConfigTest {
 
         final var step = config.exportPersonsStep(jobRepository, transactionManager, reader, writer, props);
 
-        assertAll(
-                () -> assertNotNull(step),
-                () -> assertEquals("exportPersonsStep", step.getName())
-        );
+        assertAll(() -> assertNotNull(step), () -> assertEquals("exportPersonsStep", step.getName()));
     }
 }
