@@ -1,9 +1,9 @@
 package com.josepedevs.pcrepair.domain.enums;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
 
 class JobAndStepValuesEnumTest {
 
@@ -24,11 +24,13 @@ class JobAndStepValuesEnumTest {
     void jobAndStepValuesEnum_ValuesArray_ThenContainsAllEnums() {
         final var values = JobAndStepValuesEnum.values();
 
-        assertArrayEquals(new JobAndStepValuesEnum[]{
-                JobAndStepValuesEnum.JOB_NAME,
-                JobAndStepValuesEnum.WRITE_HEADERS_STEP,
-                JobAndStepValuesEnum.LOG_PROPERTIES_STEP,
-                JobAndStepValuesEnum.EXPORT_PERSON_STEP
-        }, values);
+        assertArrayEquals(
+                new JobAndStepValuesEnum[] {
+                    JobAndStepValuesEnum.JOB_NAME,
+                    JobAndStepValuesEnum.WRITE_HEADERS_STEP,
+                    JobAndStepValuesEnum.LOG_PROPERTIES_STEP,
+                    JobAndStepValuesEnum.EXPORT_PERSON_STEP
+                },
+                values);
     }
 }

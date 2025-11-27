@@ -1,5 +1,13 @@
 package com.josepedevs.pcrepair.infra.writer;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoInteractions;
+import static org.mockito.Mockito.when;
+
 import com.josepedevs.pcrepair.config.AppPropertiesReader;
 import com.josepedevs.pcrepair.infra.writer.factory.PersonWriterFactory;
 import com.josepedevs.pcrepair.infra.writer.strategy.PersonWriterStrategy;
@@ -8,14 +16,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.batch.item.file.FlatFileItemWriter;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertSame;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoInteractions;
-import static org.mockito.Mockito.when;
 
 class PersonFileWriterTest {
 
@@ -71,10 +71,11 @@ class PersonFileWriterTest {
     void personWriter_GivenNullFormat_ThenThrowsIllegalStateException() {
         when(props.getExportFormat()).thenReturn(null);
 
-        final var exception = assertThrows(IllegalStateException.class,
-                () -> personFileWriter.personWriter(props));
+        final var exception = assertThrows(IllegalStateException.class, () -> personFileWriter.personWriter(props));
 
-        assertEquals("No format specified in application.properties and/or no default value included.", exception.getMessage());
+        assertEquals(
+                "No format specified in application.properties and/or no default value included.",
+                exception.getMessage());
         verifyNoInteractions(writerFactory);
     }
 }

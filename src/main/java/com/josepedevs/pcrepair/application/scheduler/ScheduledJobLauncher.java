@@ -2,6 +2,7 @@ package com.josepedevs.pcrepair.application.scheduler;
 
 import com.josepedevs.pcrepair.application.util.ExportJobParameterCreatorService;
 import com.josepedevs.pcrepair.config.AppPropertiesReader;
+import java.util.Objects;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -12,14 +13,13 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import java.util.Objects;
-
 @Component
 @RequiredArgsConstructor
 @Slf4j
 public class ScheduledJobLauncher {
 
-    private static final String COULD_NOT_EXECUTE_SCHEDULED_JOB_MORE_INFO = "Could not execute scheduled job, more info: {}";
+    private static final String COULD_NOT_EXECUTE_SCHEDULED_JOB_MORE_INFO =
+            "Could not execute scheduled job, more info: {}";
     private final JobLauncher jobLauncher;
     private final Job exportPersonsJob;
     private final ExportJobParameterCreatorService exportJobParameterCreatorService;
@@ -35,8 +35,8 @@ public class ScheduledJobLauncher {
     }
 
     public void runJob(AppPropertiesReader params) {
-        try{
-            if(Objects.isNull(params)) {
+        try {
+            if (Objects.isNull(params)) {
                 final var defaults = exportJobParameterCreatorService.prepareJobParameters(null);
                 log.info("executing default job with cron {}", cron);
                 jobLauncher.run(exportPersonsJob, defaults);

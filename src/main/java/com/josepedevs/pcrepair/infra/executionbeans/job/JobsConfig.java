@@ -13,10 +13,11 @@ import org.springframework.context.annotation.Configuration;
 public class JobsConfig {
 
     @Bean
-    public Job exportPersonsJob(JobRepository jobRepository,
-                                Step logPropertiesStep,
-                                Step exportPersonsStep,
-                                JobExecutionListener jobCompletionListener) {
+    public Job exportPersonsJob(
+            JobRepository jobRepository,
+            Step logPropertiesStep,
+            Step exportPersonsStep,
+            JobExecutionListener jobCompletionListener) {
 
         return new JobBuilder(JobAndStepValuesEnum.JOB_NAME.getValue(), jobRepository)
                 .start(logPropertiesStep)
@@ -25,4 +26,3 @@ public class JobsConfig {
                 .build();
     }
 }
-

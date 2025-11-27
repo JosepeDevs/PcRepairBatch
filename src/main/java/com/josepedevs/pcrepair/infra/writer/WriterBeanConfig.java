@@ -24,8 +24,7 @@ public class WriterBeanConfig {
             @Value("#{jobParameters['outputFileName']}") String outputFileName,
             @Value("#{jobParameters['delimiter']}") String delimiter,
             @Value("#{jobParameters['includeHeaders']}") String includeHeaders,
-            @Value("#{jobParameters['exportFormat']}") String exportFormat
-    ) {
+            @Value("#{jobParameters['exportFormat']}") String exportFormat) {
 
         final var props = AppPropertiesReader.builder()
                 .outputFile(outputFileName)

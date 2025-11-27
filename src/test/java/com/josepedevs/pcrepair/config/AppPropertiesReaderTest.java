@@ -1,11 +1,11 @@
 package com.josepedevs.pcrepair.config;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
 
 class AppPropertiesReaderTest {
 
@@ -19,8 +19,7 @@ class AppPropertiesReaderTest {
                 () -> assertEquals(",", props.getDelimiter()),
                 () -> assertEquals("csv", props.getExportFormat()),
                 () -> assertTrue(props.isIncludeHeaders()),
-                () -> assertEquals(500, props.getChunkSize())
-        );
+                () -> assertEquals(500, props.getChunkSize()));
     }
 
     @Test
@@ -40,8 +39,7 @@ class AppPropertiesReaderTest {
                 () -> assertEquals(";", props.getDelimiter()),
                 () -> assertEquals("json", props.getExportFormat()),
                 () -> assertFalse(props.isIncludeHeaders()),
-                () -> assertEquals(100, props.getChunkSize())
-        );
+                () -> assertEquals(100, props.getChunkSize()));
     }
 
     @Test
@@ -61,8 +59,7 @@ class AppPropertiesReaderTest {
                 () -> assertEquals("|", props.getDelimiter()),
                 () -> assertEquals("txt", props.getExportFormat()),
                 () -> assertFalse(props.isIncludeHeaders()),
-                () -> assertEquals(250, props.getChunkSize())
-        );
+                () -> assertEquals(250, props.getChunkSize()));
     }
 
     @Test
@@ -75,7 +72,6 @@ class AppPropertiesReaderTest {
                 () -> assertEquals(",", props.getDelimiter()),
                 () -> assertEquals("csv", props.getExportFormat()),
                 () -> assertTrue(props.isIncludeHeaders()),
-                () -> assertEquals(500, props.getChunkSize())
-        );
+                () -> assertEquals(500, props.getChunkSize()));
     }
 }

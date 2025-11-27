@@ -2,10 +2,9 @@ package com.josepedevs.pcrepair.infra.database.rowmapper;
 
 import com.josepedevs.pcrepair.domain.enums.PersonColumnsEnum;
 import com.josepedevs.pcrepair.domain.model.Person;
-import org.springframework.jdbc.core.RowMapper;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import org.springframework.jdbc.core.RowMapper;
 
 public class PersonRowMapper implements RowMapper<Person> {
 

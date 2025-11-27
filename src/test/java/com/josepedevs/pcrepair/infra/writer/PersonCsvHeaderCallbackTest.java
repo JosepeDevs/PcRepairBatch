@@ -1,13 +1,12 @@
 package com.josepedevs.pcrepair.infra.writer;
 
-import com.josepedevs.pcrepair.domain.enums.PersonColumnsEnum;
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThat;
 
+import com.josepedevs.pcrepair.domain.enums.PersonColumnsEnum;
 import java.io.StringWriter;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.jupiter.api.Test;
 
 class PersonCsvHeaderCallbackTest {
 

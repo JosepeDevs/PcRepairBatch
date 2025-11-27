@@ -1,9 +1,8 @@
 package com.josepedevs.pcrepair.application.util;
 
-import org.springframework.stereotype.Service;
-
 import java.lang.reflect.Field;
 import java.util.Arrays;
+import org.springframework.stereotype.Service;
 
 @Service
 public class FieldExtractor {

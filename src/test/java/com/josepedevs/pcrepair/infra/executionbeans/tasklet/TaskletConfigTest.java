@@ -1,14 +1,14 @@
 package com.josepedevs.pcrepair.infra.executionbeans.tasklet;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.Mockito.mock;
+
 import com.josepedevs.pcrepair.config.AppPropertiesReader;
 import com.josepedevs.pcrepair.infra.executionbeans.listener.JobCompletionLoggingListener;
 import org.junit.jupiter.api.Test;
 import org.springframework.batch.core.JobExecutionListener;
 import org.springframework.batch.core.step.tasklet.Tasklet;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.Mockito.mock;
 
 class TaskletConfigTest {
 

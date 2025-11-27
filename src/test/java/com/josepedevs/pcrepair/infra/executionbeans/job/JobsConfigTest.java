@@ -1,5 +1,8 @@
 package com.josepedevs.pcrepair.infra.executionbeans.job;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.when;
+
 import com.josepedevs.pcrepair.domain.enums.JobAndStepValuesEnum;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,9 +14,6 @@ import org.springframework.batch.core.JobExecutionListener;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.job.SimpleJob;
 import org.springframework.batch.core.repository.JobRepository;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class JobsConfigTest {
@@ -39,13 +39,9 @@ class JobsConfigTest {
 
     @Test
     void exportPersonsJob_GivenAllDependencies_ThenJobIsBuiltCorrectly() {
-        
-        final var job = config.exportPersonsJob(
-                jobRepository,
-                logPropertiesStep,
-                exportPersonsStep,
-                jobExecutionListener
-        );
+
+        final var job =
+                config.exportPersonsJob(jobRepository, logPropertiesStep, exportPersonsStep, jobExecutionListener);
 
         assertThat(job).isNotNull();
         assertThat(job.getName()).isEqualTo(JobAndStepValuesEnum.JOB_NAME.getValue());
@@ -56,21 +52,13 @@ class JobsConfigTest {
     void exportPersonsJob_GivenSteps_ThenStepsAreInCorrectOrder() {
         when(logPropertiesStep.getName()).thenReturn("logPropertiesStep");
         when(exportPersonsStep.getName()).thenReturn("exportPersonsStep");
-        final Job job = config.exportPersonsJob(
-                jobRepository,
-                logPropertiesStep,
-                exportPersonsStep,
-                jobExecutionListener
-        );
+        final Job job =
+                config.exportPersonsJob(jobRepository, logPropertiesStep, exportPersonsStep, jobExecutionListener);
 
         assertThat(job).isInstanceOf(SimpleJob.class);
         SimpleJob simpleJob = (SimpleJob) job;
 
         final var steps = simpleJob.getStepNames();
-        assertThat(steps).containsExactly(
-                "logPropertiesStep",
-                "exportPersonsStep"
-        );
+        assertThat(steps).containsExactly("logPropertiesStep", "exportPersonsStep");
     }
-
 }

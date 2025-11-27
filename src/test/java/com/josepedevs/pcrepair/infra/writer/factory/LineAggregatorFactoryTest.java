@@ -1,14 +1,14 @@
 package com.josepedevs.pcrepair.infra.writer.factory;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 import com.josepedevs.pcrepair.application.util.FieldExtractor;
 import com.josepedevs.pcrepair.config.AppPropertiesReader;
 import com.josepedevs.pcrepair.domain.model.Person;
 import org.junit.jupiter.api.Test;
 import org.springframework.batch.item.file.transform.LineAggregator;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 class LineAggregatorFactoryTest {
 
@@ -17,18 +17,14 @@ class LineAggregatorFactoryTest {
         var fieldExtractor = mock(FieldExtractor.class);
         var props = mock(AppPropertiesReader.class);
 
-       when(fieldExtractor.extractFieldNames(Person.class))
-                .thenReturn(new String[]{"idUser", "name"});
+        when(fieldExtractor.extractFieldNames(Person.class)).thenReturn(new String[] {"idUser", "name"});
 
-       when(props.getDelimiter()).thenReturn(";");
+        when(props.getDelimiter()).thenReturn(";");
 
         var factory = new LineAggregatorFactory(fieldExtractor);
         LineAggregator<Person> aggregator = factory.createLineAggregator(props);
 
-        Person person = Person.builder()
-                .idUser("1")
-                .name("Pepe")
-                .build();
+        Person person = Person.builder().idUser("1").name("Pepe").build();
 
         String line = aggregator.aggregate(person);
 

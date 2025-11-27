@@ -1,13 +1,13 @@
 package com.josepedevs.pcrepair.infra.rest.mapper;
 
-import com.josepedevs.pcrepair.infra.rest.dto.PropertiesRequestDTO;
-import org.junit.jupiter.api.Test;
-import org.mapstruct.factory.Mappers;
-
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.josepedevs.pcrepair.infra.rest.dto.PropertiesRequestDTO;
+import org.junit.jupiter.api.Test;
+import org.mapstruct.factory.Mappers;
 
 class RestExportPersonMapperTest {
 
@@ -25,8 +25,7 @@ class RestExportPersonMapperTest {
                 () -> assertFalse(result.isIncludeHeaders()),
                 () -> assertEquals("json", result.getExportFormat()),
                 () -> assertEquals("output", result.getOutputDirectory()),
-                () -> assertEquals(500, result.getChunkSize())
-        );
+                () -> assertEquals(500, result.getChunkSize()));
     }
 
     @Test
@@ -41,7 +40,6 @@ class RestExportPersonMapperTest {
                 () -> assertEquals("csv", result.getExportFormat()),
                 () -> assertEquals("output", result.getOutputDirectory()),
                 () -> assertEquals("persons.txt", result.getOutputFile()),
-                () -> assertEquals(500, result.getChunkSize())
-        );
+                () -> assertEquals(500, result.getChunkSize()));
     }
 }

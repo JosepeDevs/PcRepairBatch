@@ -1,16 +1,16 @@
 package com.josepedevs.pcrepair.infra.executionbeans.tasklet;
 
-import com.josepedevs.pcrepair.config.AppPropertiesReader;
-import org.junit.jupiter.api.Test;
-import org.springframework.batch.core.StepContribution;
-import org.springframework.batch.core.scope.context.ChunkContext;
-import org.springframework.batch.repeat.RepeatStatus;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+
+import com.josepedevs.pcrepair.config.AppPropertiesReader;
+import org.junit.jupiter.api.Test;
+import org.springframework.batch.core.StepContribution;
+import org.springframework.batch.core.scope.context.ChunkContext;
+import org.springframework.batch.repeat.RepeatStatus;
 
 class LogPropertiesTaskletTest {
 
@@ -44,8 +44,7 @@ class LogPropertiesTaskletTest {
         final var chunkContext = mock(ChunkContext.class);
         final StepContribution contribution = null;
 
-        assertThrows(NullPointerException.class,
-                () -> tasklet.execute(contribution, chunkContext));
+        assertThrows(NullPointerException.class, () -> tasklet.execute(contribution, chunkContext));
     }
 
     @SuppressWarnings("ConstantConditions")
@@ -55,7 +54,6 @@ class LogPropertiesTaskletTest {
         final var tasklet = new LogPropertiesTasklet(props);
         final var contribution = mock(StepContribution.class);
 
-        assertThrows(NullPointerException.class,
-                () -> tasklet.execute(contribution, null));
+        assertThrows(NullPointerException.class, () -> tasklet.execute(contribution, null));
     }
 }

@@ -3,12 +3,11 @@ package com.josepedevs.pcrepair.infra.database;
 import com.josepedevs.pcrepair.domain.interfaces.PersonReader;
 import com.josepedevs.pcrepair.domain.model.Person;
 import jakarta.annotation.PostConstruct;
+import java.util.Iterator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.stereotype.Component;
-
-import java.util.Iterator;
 
 @Component
 @StepScope

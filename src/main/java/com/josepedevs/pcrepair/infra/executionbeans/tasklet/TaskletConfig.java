@@ -23,5 +23,4 @@ public class TaskletConfig {
     public JobExecutionListener jobCompletionListener() {
         return new JobCompletionLoggingListener();
     }
-
 }

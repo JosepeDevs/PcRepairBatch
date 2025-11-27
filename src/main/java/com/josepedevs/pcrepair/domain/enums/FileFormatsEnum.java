@@ -1,15 +1,13 @@
 package com.josepedevs.pcrepair.domain.enums;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
 import java.util.Arrays;
 import java.util.Objects;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
 public enum FileFormatsEnum {
-
     CSV("csv"),
     JSON("json");
 
@@ -23,7 +21,6 @@ public enum FileFormatsEnum {
         return Arrays.stream(values())
                 .filter(f -> f.format.equalsIgnoreCase(value))
                 .findFirst()
-                .orElseThrow(() ->
-                        new IllegalArgumentException("Unsupported export format: " + value));
+                .orElseThrow(() -> new IllegalArgumentException("Unsupported export format: " + value));
     }
 }

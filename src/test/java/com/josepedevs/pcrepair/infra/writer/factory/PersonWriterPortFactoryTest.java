@@ -1,14 +1,14 @@
 package com.josepedevs.pcrepair.infra.writer.factory;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import com.josepedevs.pcrepair.infra.writer.strategy.PersonWriterStrategy;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @ExtendWith(MockitoExtension.class)
 class PersonWriterPortFactoryTest {
@@ -40,13 +40,11 @@ class PersonWriterPortFactoryTest {
 
     @Test
     void getStrategy_GivenUnknown_ThenThrows() {
-        assertThrows(IllegalArgumentException.class,
-                () -> factory.getStrategy("xml"));
+        assertThrows(IllegalArgumentException.class, () -> factory.getStrategy("xml"));
     }
 
     @Test
     void getStrategy_GivenNull_ThenThrows() {
-        assertThrows(IllegalArgumentException.class,
-                () -> factory.getStrategy(null));
+        assertThrows(IllegalArgumentException.class, () -> factory.getStrategy(null));
     }
 }

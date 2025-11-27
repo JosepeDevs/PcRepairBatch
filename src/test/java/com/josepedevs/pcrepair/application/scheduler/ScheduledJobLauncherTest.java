@@ -1,5 +1,13 @@
 package com.josepedevs.pcrepair.application.scheduler;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 import com.josepedevs.pcrepair.application.util.ExportJobParameterCreatorService;
 import com.josepedevs.pcrepair.config.AppPropertiesReader;
 import org.junit.jupiter.api.Test;
@@ -10,14 +18,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.launch.JobLauncher;
-
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.doThrow;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class ScheduledJobLauncherTest {
@@ -42,10 +42,8 @@ class ScheduledJobLauncherTest {
 
         launcher.runJob(null);
 
-        assertAll(
-                () -> verify(exportJobParameterCreatorService).prepareJobParameters(null),
-                () -> verify(jobLauncher).run(exportPersonsJob, defaultParams)
-        );
+        assertAll(() -> verify(exportJobParameterCreatorService).prepareJobParameters(null), () -> verify(jobLauncher)
+                .run(exportPersonsJob, defaultParams));
     }
 
     @Test
@@ -57,10 +55,8 @@ class ScheduledJobLauncherTest {
 
         launcher.runJob(props);
 
-        assertAll(
-                () -> verify(exportJobParameterCreatorService).prepareJobParameters(props),
-                () -> verify(jobLauncher).run(exportPersonsJob, jobParams)
-        );
+        assertAll(() -> verify(exportJobParameterCreatorService).prepareJobParameters(props), () -> verify(jobLauncher)
+                .run(exportPersonsJob, jobParams));
     }
 
     @Test

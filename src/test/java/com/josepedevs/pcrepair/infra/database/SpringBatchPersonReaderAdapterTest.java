@@ -1,18 +1,17 @@
 package com.josepedevs.pcrepair.infra.database;
 
-import com.josepedevs.pcrepair.domain.interfaces.PersonReader;
-import com.josepedevs.pcrepair.domain.model.Person;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-
-import java.util.stream.Stream;
-
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+
+import com.josepedevs.pcrepair.domain.interfaces.PersonReader;
+import com.josepedevs.pcrepair.domain.model.Person;
+import java.util.stream.Stream;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 class SpringBatchPersonReaderAdapterTest {
 

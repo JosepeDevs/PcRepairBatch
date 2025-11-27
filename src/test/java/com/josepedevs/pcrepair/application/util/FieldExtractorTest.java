@@ -1,11 +1,11 @@
 package com.josepedevs.pcrepair.application.util;
 
-import lombok.Data;
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import lombok.Data;
+import org.junit.jupiter.api.Test;
 
 class FieldExtractorTest {
 
@@ -15,22 +15,20 @@ class FieldExtractorTest {
 
         final var result = extractor.extractFieldNames(DummyClass.class);
 
-        assertArrayEquals(new String[]{"id", "name"}, result);
+        assertArrayEquals(new String[] {"id", "name"}, result);
     }
 
     @Test
     void extractFieldNames_GivenNull_ThenThrows() {
         final var extractor = new FieldExtractor();
-        assertThrows(IllegalArgumentException.class,
-                () -> extractor.extractFieldNames(null));
+        assertThrows(IllegalArgumentException.class, () -> extractor.extractFieldNames(null));
     }
 
     @Test
     void extractFieldNames_GivenNullClass_ThenThrowsIllegalArgumentException() {
         final var extractor = new FieldExtractor();
 
-        final var exception = assertThrows(IllegalArgumentException.class,
-                () -> extractor.extractFieldNames(null));
+        final var exception = assertThrows(IllegalArgumentException.class, () -> extractor.extractFieldNames(null));
 
         assertEquals("Class must not be null", exception.getMessage());
     }
@@ -41,7 +39,7 @@ class FieldExtractorTest {
 
         final var result = extractor.extractFieldNames(OuterClass.InnerClass.class);
 
-        assertArrayEquals(new String[]{"realField"}, result);
+        assertArrayEquals(new String[] {"realField"}, result);
     }
 
     @Data

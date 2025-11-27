@@ -5,6 +5,4 @@ import org.springframework.context.annotation.Configuration;
 
 @EnableConfigurationProperties(AppPropertiesReader.class)
 @Configuration
-public class BatchConfig {
-
-}
+public class BatchConfig {}

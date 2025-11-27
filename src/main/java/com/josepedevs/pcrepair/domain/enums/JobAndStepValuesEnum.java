@@ -6,7 +6,6 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public enum JobAndStepValuesEnum {
-
     JOB_NAME("exportPersonsJob"),
     WRITE_HEADERS_STEP("writeHeadersStep"),
     LOG_PROPERTIES_STEP("logPropertiesStep"),

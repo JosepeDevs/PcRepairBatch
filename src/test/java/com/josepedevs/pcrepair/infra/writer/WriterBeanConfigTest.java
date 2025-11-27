@@ -1,5 +1,13 @@
 package com.josepedevs.pcrepair.infra.writer;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 import com.josepedevs.pcrepair.application.util.FolderCreator;
 import com.josepedevs.pcrepair.config.AppPropertiesReader;
 import com.josepedevs.pcrepair.domain.model.Person;
@@ -13,14 +21,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.batch.item.file.FlatFileItemWriter;
 import org.springframework.core.io.FileSystemResource;
-
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertSame;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.any;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class WriterBeanConfigTest {
@@ -53,7 +53,8 @@ class WriterBeanConfigTest {
         when(writerFactory.getStrategy(exportFormat)).thenReturn(strategy);
         final var propsCaptor = ArgumentCaptor.forClass(AppPropertiesReader.class);
         when(strategy.createWriter(any(AppPropertiesReader.class))).thenReturn(writer);
-        when(folderCreator.createOutputResourceIfNotExists(any(AppPropertiesReader.class))).thenReturn(resource);
+        when(folderCreator.createOutputResourceIfNotExists(any(AppPropertiesReader.class)))
+                .thenReturn(resource);
 
         final var result = config.personWriter(outputFileName, delimiter, includeHeaders, exportFormat);
 
@@ -66,7 +67,6 @@ class WriterBeanConfigTest {
                 () -> assertEquals(outputFileName, propsCaptor.getValue().getOutputFile()),
                 () -> assertEquals(delimiter, propsCaptor.getValue().getDelimiter()),
                 () -> assertTrue(propsCaptor.getValue().isIncludeHeaders()),
-                () -> assertEquals(exportFormat, propsCaptor.getValue().getExportFormat())
-        );
+                () -> assertEquals(exportFormat, propsCaptor.getValue().getExportFormat()));
     }
 }

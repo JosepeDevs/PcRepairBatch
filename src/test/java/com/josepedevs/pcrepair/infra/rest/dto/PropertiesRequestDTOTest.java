@@ -1,9 +1,9 @@
 package com.josepedevs.pcrepair.infra.rest.dto;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
 
 class PropertiesRequestDTOTest {
 
@@ -15,8 +15,7 @@ class PropertiesRequestDTOTest {
                 () -> assertEquals("output.txt", dto.outputFileName()),
                 () -> assertEquals(";", dto.delimiter()),
                 () -> assertEquals("false", dto.includeHeaders()),
-                () -> assertEquals("txt", dto.exportFormat())
-        );
+                () -> assertEquals("txt", dto.exportFormat()));
     }
 
     @Test
@@ -27,7 +26,6 @@ class PropertiesRequestDTOTest {
                 () -> assertEquals("persons.txt", dto.outputFileName()),
                 () -> assertEquals(",", dto.delimiter()),
                 () -> assertEquals("true", dto.includeHeaders()),
-                () -> assertEquals("csv", dto.exportFormat())
-        );
+                () -> assertEquals("csv", dto.exportFormat()));
     }
 }

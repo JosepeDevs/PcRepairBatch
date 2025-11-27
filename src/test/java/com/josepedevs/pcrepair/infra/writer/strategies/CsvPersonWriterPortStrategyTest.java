@@ -1,10 +1,14 @@
 package com.josepedevs.pcrepair.infra.writer.strategies;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.mockito.Mockito.when;
+
 import com.josepedevs.pcrepair.application.util.FieldExtractor;
 import com.josepedevs.pcrepair.application.util.FolderCreator;
 import com.josepedevs.pcrepair.config.AppPropertiesReader;
 import com.josepedevs.pcrepair.domain.model.Person;
 import com.josepedevs.pcrepair.infra.writer.PersonCsvHeaderCallback;
+import java.io.File;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,11 +18,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.batch.item.file.transform.DelimitedLineAggregator;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.test.util.ReflectionTestUtils;
-
-import java.io.File;
-
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class CsvPersonWriterPortStrategyTest {
@@ -52,7 +51,7 @@ class CsvPersonWriterPortStrategyTest {
         when(props.isIncludeHeaders()).thenReturn(true);
         when(props.getDelimiter()).thenReturn(",");
         when(folderCreator.createOutputResourceIfNotExists(props)).thenReturn(resource);
-        when(extractor.extractFieldNames(Person.class)).thenReturn(new String[]{"idUser", "name"});
+        when(extractor.extractFieldNames(Person.class)).thenReturn(new String[] {"idUser", "name"});
 
         final var writer = strategy.createWriter(props);
 
@@ -68,7 +67,7 @@ class CsvPersonWriterPortStrategyTest {
         when(props.getDelimiter()).thenReturn(";");
         when(folderCreator.createOutputResourceIfNotExists(props)).thenReturn(resource);
         when(resource.getFile()).thenReturn(file);
-        when(extractor.extractFieldNames(Person.class)).thenReturn(new String[]{"idUser", "name"});
+        when(extractor.extractFieldNames(Person.class)).thenReturn(new String[] {"idUser", "name"});
 
         final var writer = strategy.createWriter(props);
 
@@ -79,5 +78,4 @@ class CsvPersonWriterPortStrategyTest {
         final var delimiter = ReflectionTestUtils.getField(aggregator, "delimiter");
         assertThat(delimiter).isEqualTo(";");
     }
-
 }

@@ -6,7 +6,6 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public enum PersonColumnsEnum {
-
     ID_USER("ID_USER"),
     METADATA("METADATA"),
     NAME("NAME"),
@@ -14,6 +13,4 @@ public enum PersonColumnsEnum {
     DELETED("DELETED");
 
     private final String columnName;
-
 }
-

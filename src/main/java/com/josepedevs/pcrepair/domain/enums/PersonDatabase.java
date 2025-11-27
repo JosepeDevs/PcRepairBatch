@@ -14,4 +14,3 @@ public class PersonDatabase {
         return DATABASE_NAME;
     }
 }
-

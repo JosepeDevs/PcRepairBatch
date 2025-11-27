@@ -1,14 +1,13 @@
 package com.josepedevs.pcrepair.application.util;
 
-import com.josepedevs.pcrepair.config.AppPropertiesReader;
-import org.junit.jupiter.api.Test;
-
-import java.util.Objects;
-
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import com.josepedevs.pcrepair.config.AppPropertiesReader;
+import java.util.Objects;
+import org.junit.jupiter.api.Test;
 
 class ExportJobParameterCreatorServiceTest {
 
@@ -31,8 +30,8 @@ class ExportJobParameterCreatorServiceTest {
                 () -> assertEquals("true", result.getString("includeHeaders")),
                 () -> assertEquals("csv", result.getString("exportFormat")),
                 () -> assertNotNull(result.getString("run.id")),
-                () -> assertFalse(Objects.requireNonNull(result.getString("run.id")).isBlank())
-        );
+                () -> assertFalse(
+                        Objects.requireNonNull(result.getString("run.id")).isBlank()));
     }
 
     @Test
@@ -45,7 +44,7 @@ class ExportJobParameterCreatorServiceTest {
                 () -> assertEquals("true", result.getString("includeHeaders")),
                 () -> assertEquals("csv", result.getString("exportFormat")),
                 () -> assertNotNull(result.getString("run.id")),
-                () -> assertFalse(Objects.requireNonNull(result.getString("run.id")).isBlank())
-        );
+                () -> assertFalse(
+                        Objects.requireNonNull(result.getString("run.id")).isBlank()));
     }
 }

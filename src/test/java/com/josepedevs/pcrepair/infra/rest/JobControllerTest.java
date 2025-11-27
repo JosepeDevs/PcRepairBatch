@@ -1,5 +1,12 @@
 package com.josepedevs.pcrepair.infra.rest;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 import com.josepedevs.pcrepair.application.scheduler.ScheduledJobLauncher;
 import com.josepedevs.pcrepair.config.AppPropertiesReader;
 import com.josepedevs.pcrepair.infra.rest.dto.PropertiesRequestDTO;
@@ -10,13 +17,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatusCode;
-
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.doThrow;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class JobControllerTest {
@@ -43,8 +43,7 @@ class JobControllerTest {
                 () -> verify(mapper).map(request),
                 () -> verify(launcher).runJob(mappedProps),
                 () -> assertEquals("Job started", response.getBody()),
-                () -> assertEquals(HttpStatusCode.valueOf(202), response.getStatusCode())
-        );
+                () -> assertEquals(HttpStatusCode.valueOf(202), response.getStatusCode()));
     }
 
     @Test
@@ -59,7 +58,6 @@ class JobControllerTest {
 
         assertAll(
                 () -> assertEquals("There was some problem with the request.", response.getBody()),
-                () -> assertEquals(HttpStatusCode.valueOf(500), response.getStatusCode())
-        );
+                () -> assertEquals(HttpStatusCode.valueOf(500), response.getStatusCode()));
     }
 }

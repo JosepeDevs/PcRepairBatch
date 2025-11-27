@@ -17,5 +17,4 @@ public interface RestExportPersonMapper {
     @Mapping(target = "outputDirectory", ignore = true)
     @Mapping(target = "chunkSize", ignore = true)
     AppPropertiesReader map(PropertiesRequestDTO restPersonDto);
-
 }
