@@ -20,8 +20,19 @@ public class WriterBeanConfig {
 
     @Bean
     @StepScope
-    public FlatFileItemWriter<Person> personWriter(AppPropertiesReader props) {
+    public FlatFileItemWriter<Person> personWriter(
+            @Value("#{jobParameters['outputFileName']}") String outputFileName,
+            @Value("#{jobParameters['delimiter']}") String delimiter,
+            @Value("#{jobParameters['includeHeaders']}") String includeHeaders,
+            @Value("#{jobParameters['exportFormat']}") String exportFormat
+    ) {
 
+        final var props = AppPropertiesReader.builder()
+                .outputFile(outputFileName)
+                .delimiter(delimiter)
+                .includeHeaders(Boolean.parseBoolean(includeHeaders))
+                .exportFormat(exportFormat)
+                .build();
         final var strategy = writerFactory.getStrategy(props.getExportFormat());
         FlatFileItemWriter<Person> writer = strategy.createWriter(props);
         final var resource = folderCreator.createOutputResourceIfNotExists(props);

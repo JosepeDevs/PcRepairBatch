@@ -5,16 +5,20 @@ import com.josepedevs.pcrepair.config.AppPropertiesReader;
 import com.josepedevs.pcrepair.domain.model.Person;
 import com.josepedevs.pcrepair.infra.writer.factory.PersonWriterFactory;
 import com.josepedevs.pcrepair.infra.writer.strategy.PersonWriterStrategy;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.batch.item.file.FlatFileItemWriter;
 import org.springframework.core.io.FileSystemResource;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -28,58 +32,41 @@ class WriterBeanConfigTest {
     private FolderCreator folderCreator;
 
     @Mock
-    private AppPropertiesReader props;
+    private PersonWriterStrategy strategy;
 
     @Mock
-    private PersonWriterStrategy strategy;
-    
+    private FlatFileItemWriter<Person> writer;
+
+    @Mock
+    private FileSystemResource resource;
+
     @InjectMocks
-    private WriterBeanConfig writerBeanConfig;
-
-    @BeforeEach
-    void setUp() {
-        writerBeanConfig = new WriterBeanConfig(writerFactory, folderCreator);
-    }
+    private WriterBeanConfig config;
 
     @Test
-    void personWriter_GivenCsvFormat_ReturnsWriterWithResource() {
+    void personWriter_GivenValidParameters_ThenReturnsConfiguredWriter() {
+        final var outputFileName = "people.csv";
+        final var delimiter = ";";
+        final var includeHeaders = "true";
+        final var exportFormat = "csv";
 
-        when(props.getExportFormat()).thenReturn("CSV");
-        when(writerFactory.getStrategy("CSV")).thenReturn(strategy);
+        when(writerFactory.getStrategy(exportFormat)).thenReturn(strategy);
+        final var propsCaptor = ArgumentCaptor.forClass(AppPropertiesReader.class);
+        when(strategy.createWriter(any(AppPropertiesReader.class))).thenReturn(writer);
+        when(folderCreator.createOutputResourceIfNotExists(any(AppPropertiesReader.class))).thenReturn(resource);
 
-        FlatFileItemWriter<Person> writer = new FlatFileItemWriter<>();
-        FileSystemResource resource = new FileSystemResource("target/test.csv");
+        final var result = config.personWriter(outputFileName, delimiter, includeHeaders, exportFormat);
 
-        when(strategy.createWriter(props)).thenReturn(writer);
-        when(folderCreator.createOutputResourceIfNotExists(props)).thenReturn(resource);
-
-        FlatFileItemWriter<Person> result = writerBeanConfig.personWriter(props);
-
-        assertSame(writer, result, "Returned writer should be the one from strategy");
-
-        verify(writerFactory).getStrategy("CSV");
-        verify(strategy).createWriter(props);
-        verify(folderCreator).createOutputResourceIfNotExists(props);
-    }
-
-    @Test
-    void personWriter_GivenJsonFormat_ReturnsWriterWithResource(){
-
-        when(props.getExportFormat()).thenReturn("JSON");
-        when(writerFactory.getStrategy("JSON")).thenReturn(strategy);
-
-        FlatFileItemWriter<Person> writer = new FlatFileItemWriter<>();
-        FileSystemResource resource = new FileSystemResource("target/test.json");
-
-        when(strategy.createWriter(props)).thenReturn(writer);
-        when(folderCreator.createOutputResourceIfNotExists(props)).thenReturn(resource);
-
-        FlatFileItemWriter<Person> result = writerBeanConfig.personWriter(props);
-
-        assertSame(writer, result);
-
-        verify(writerFactory).getStrategy("JSON");
-        verify(strategy).createWriter(props);
-        verify(folderCreator).createOutputResourceIfNotExists(props);
+        assertAll(
+                () -> assertSame(writer, result),
+                () -> verify(writerFactory).getStrategy(exportFormat),
+                () -> verify(strategy).createWriter(propsCaptor.capture()),
+                () -> verify(folderCreator).createOutputResourceIfNotExists(any(AppPropertiesReader.class)),
+                () -> verify(writer).setResource(resource),
+                () -> assertEquals(outputFileName, propsCaptor.getValue().getOutputFile()),
+                () -> assertEquals(delimiter, propsCaptor.getValue().getDelimiter()),
+                () -> assertTrue(propsCaptor.getValue().isIncludeHeaders()),
+                () -> assertEquals(exportFormat, propsCaptor.getValue().getExportFormat())
+        );
     }
 }
