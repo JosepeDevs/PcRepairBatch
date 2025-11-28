@@ -5,6 +5,12 @@ and adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.3.1]
+
+### Fixed
+
+- Ensure Builder.Default values are preserved for scheduled runs (they have null jobparams)
+
 ## [1.3.0]
 
 ### Changed

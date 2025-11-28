@@ -11,6 +11,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.Objects;
+import java.util.function.Consumer;
+
 @Configuration
 @RequiredArgsConstructor
 public class WriterBeanConfig {
@@ -26,16 +29,25 @@ public class WriterBeanConfig {
             @Value("#{jobParameters['includeHeaders']}") String includeHeaders,
             @Value("#{jobParameters['exportFormat']}") String exportFormat) {
 
-        final var props = AppPropertiesReader.builder()
-                .outputFile(outputFileName)
-                .delimiter(delimiter)
-                .includeHeaders(Boolean.parseBoolean(includeHeaders))
-                .exportFormat(exportFormat)
-                .build();
+        final var builder = AppPropertiesReader.builder();
+
+        // Job parameters are null for scheduled runs; set values only when non-null because Lombok @Builder.Default is ignored if explicitly set to null
+        setIfNotNull(builder::outputFile, outputFileName);
+        setIfNotNull(builder::delimiter, delimiter);
+        setIfNotNull(builder::exportFormat, exportFormat);
+        setIfNotNull(includeHeaders != null ? v -> builder.includeHeaders(Boolean.parseBoolean(v)) : null, includeHeaders);
+
+        final var props = builder.build();
         final var strategy = writerFactory.getStrategy(props.getExportFormat());
         FlatFileItemWriter<Person> writer = strategy.createWriter(props);
         final var resource = folderCreator.createOutputResourceIfNotExists(props);
         writer.setResource(resource);
         return writer;
+    }
+
+    private <T> void setIfNotNull(Consumer<T> setter, T value) {
+        if (!Objects.isNull(value)) {
+            setter.accept(value);
+        }
     }
 }
