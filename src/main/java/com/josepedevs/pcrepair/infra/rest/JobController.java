@@ -25,7 +25,7 @@ public class JobController {
             return ResponseEntity.accepted().body("Job started");
         } catch (Exception e) {
             log.error("Error starting job: {}", e.getLocalizedMessage());
-            return ResponseEntity.internalServerError().body("There was some problem with the request.");
+            return ResponseEntity.internalServerError().body(String.format("There was some problem with the request: %s",e.getLocalizedMessage()));
         }
     }
 }
